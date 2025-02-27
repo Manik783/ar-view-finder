@@ -11,11 +11,12 @@ const CarReveal: React.FC<CarRevealProps> = ({ progress }) => {
   const imageRef = useRef<HTMLImageElement>(null);
 
   // Calculate the position of the car image based on the drag progress
+  // Using a smoother transition curve for more natural movement
   const carPosition = progress * 100;
 
   useEffect(() => {
     const img = new Image();
-    img.src = 'https://dcfvgbhj.netlify.app/car.jpeg';
+    img.src = 'https://wallpapercave.com/wp/SsbQqtk.jpg';
     
     img.onload = () => {
       setIsLoaded(true);
@@ -50,13 +51,14 @@ const CarReveal: React.FC<CarRevealProps> = ({ progress }) => {
       >
         <img
           ref={imageRef}
-          src="https://dcfvgbhj.netlify.app/car.jpeg"
+          src="https://wallpapercave.com/wp/SsbQqtk.jpg"
           alt="Car in AR view"
-          className="absolute object-cover min-w-[200%] h-full transition-transform duration-200"
+          className="absolute object-cover min-w-[200%] h-full"
           style={{
             transform: `translateX(${-carPosition * 1.5}%)`,
             objectPosition: `${carPosition}% center`,
             willChange: 'transform',
+            transition: 'transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)'
           }}
         />
         
